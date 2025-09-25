@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "KodNest Dark Extension",
+  "version": "1.0",
+  "description": "A dark theme extension for KodNest.",
+  "permissions": ["activeTab", "scripting"],
+  "host_permissions": ["*://app.kodnest.com/*"],
+  "content_scripts": [
+    {
+      "matches": ["*://app.kodnest.com/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
