@@ -4,6 +4,7 @@ import courseCards from "./home/courseCards.js";
 import broKodBanner from "./home/broKodBanner.js";
 import arrowButtons from "./home/arrowButtons.js";
 import practiceCards from "./home/practiceCards.js";
+import attendanceCards from "./home/attendanceCards.js";
 
 console.log("KodNest Dark Extension: Content script loaded.");
 
@@ -20,6 +21,7 @@ export default function main() {
     courseCards();
     broKodBanner();
     practiceCards();
+    attendanceCards();
     // TODO: The below button doesnt make any change.
     arrowButtons(
         "#practice-section .flex.space-x-2 > button:first-child",
