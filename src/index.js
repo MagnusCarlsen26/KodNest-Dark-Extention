@@ -5,6 +5,8 @@ import broKodBanner from "./home/broKodBanner.js";
 import arrowButtons from "./home/arrowButtons.js";
 import practiceCards from "./home/practiceCards.js";
 import attendanceCards from "./home/attendanceCards.js";
+import pendingCards from "./home/pendingCards.js";
+import footer from "./home/footer.js";
 
 console.log("KodNest Dark Extension: Content script loaded.");
 
@@ -15,6 +17,7 @@ document.querySelectorAll("#dashboard-column")[0].style.backgroundColor = "#0000
 
 // TODO: Add border for various elements
 // TODO: Update color for section headers
+// TODO: SQL Live clas card has red border. Fix it
 export default function main() {
     
     Navbar();
@@ -22,6 +25,8 @@ export default function main() {
     broKodBanner();
     practiceCards();
     attendanceCards();
+    pendingCards();
+    footer();
     // TODO: The below button doesnt make any change.
     arrowButtons(
         "#practice-section .flex.space-x-2 > button:first-child",
