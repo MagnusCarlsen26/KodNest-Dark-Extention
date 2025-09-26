@@ -7,6 +7,7 @@ import practiceCards from "./home/practiceCards.js";
 import attendanceCards from "./home/attendanceCards.js";
 import pendingCards from "./home/pendingCards.js";
 import footer from "./home/footer.js";
+import placementCards from "./home/placementCards.js";
 
 console.log("KodNest Dark Extension: Content script loaded.");
 
@@ -27,6 +28,7 @@ export default function main() {
     attendanceCards();
     pendingCards();
     footer();
+    placementCards();
     // TODO: The below button doesnt make any change.
     arrowButtons(
         "#practice-section .flex.space-x-2 > button:first-child",
