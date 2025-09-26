@@ -1,4 +1,4 @@
-// Dark-theme the “placed” profile card (works for any similar .dashboard-card, even if loaded later)
+// TODO: Sometimes the text is blue not red.
 export default function placementCards() {
   const STYLE_ID = "__darkify_placed_profile_card";
 

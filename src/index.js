@@ -16,6 +16,7 @@ document.querySelectorAll("#dashboard-column")[0].style.backgroundColor = "#0000
 // TODO: Colors aren't changing when changing pages. 
 // Probably because of SPA
 
+// TODO: Dark theme for loading components.
 // TODO: Add border for various elements
 // TODO: Update color for section headers
 // TODO: SQL Live clas card has red border. Fix it
