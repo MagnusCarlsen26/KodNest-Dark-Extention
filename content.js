@@ -1,3 +1,2 @@
-// content.js
-
-console.log("KodNest Dark Extension: Content script loaded.");
+import './src/index.js';
+console.log("Content script loaded");

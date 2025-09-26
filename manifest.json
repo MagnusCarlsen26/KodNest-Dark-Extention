@@ -8,10 +8,16 @@
   "content_scripts": [
     {
       "matches": ["*://app.kodnest.com/*"],
-      "js": ["content.js"]
+      "js": ["dist/content.bundle.js"]
     }
   ],
   "action": {
     "default_popup": "popup.html"
-  }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["dist/popup.bundle.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }

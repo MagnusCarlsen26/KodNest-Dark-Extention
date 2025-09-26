@@ -1,0 +1,25 @@
+{
+  "name": "kodnest-dark-extention",
+  "version": "1.0.0",
+  "description": "",
+  "main": "content.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MagnusCarlsen26/KodNest-Dark-Extention.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MagnusCarlsen26/KodNest-Dark-Extention/issues"
+  },
+  "homepage": "https://github.com/MagnusCarlsen26/KodNest-Dark-Extention#readme",
+  "devDependencies": {
+    "webpack": "^5.101.3",
+    "webpack-cli": "^6.0.1"
+  }
+}
