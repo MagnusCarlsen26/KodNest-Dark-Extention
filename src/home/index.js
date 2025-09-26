@@ -9,10 +9,12 @@ import placementCards from "./placementCards.js";
 import ArrowButtons from "./arrowButtons.js";
 
 export default function Home() {
-
-    document.querySelectorAll("#dashboard-column")[0]
-        .style.backgroundColor = "#000000";
-
+    
+    const dashboard = document.querySelector("#dashboard-column");
+    if (dashboard) {
+        dashboard.style.backgroundColor = "#000000";
+    }
+    
     Navbar();
     courseCards();
     broKodBanner();

@@ -8,7 +8,12 @@ console.log("KodNest Dark Extension: Content script loaded.");
 // TODO: Dark theme for loading components.
 // TODO: How will the errors handled?
 export default function main() {
-    
-    Home();
 
+    const currentURL = window.location.href;
+    const baseURL = "https://app.kodnest.com/my-learning";
+    const path = currentURL.replace(baseURL, "");
+
+
+    if (path === "/home") Home();
+    else console.log("Unknown path: ", path);
 }
