@@ -1,12 +1,15 @@
 import Navbar from "../navbar/navbar";
 import practiceCards from "../home/practiceCards";
+import practiceTitles from "./practiceTitles";
 
+// TODO: Loading dark theme pending
+// TODO: Filter dark theme pending
 export default function practiceList() {
 
     pageBlack();
+    practiceTitles();
     Navbar();
     practiceCards();
-    
 }
 
 // TODO: This function is exactly same as the one in classList.js
