@@ -1,5 +1,7 @@
 import Navbar from "../navbar/navbar.js";
 import courseCards from "./courseCards.js";
+import courseTabs from "./courseTabs.js";
+import { darkifyComboboxButtons, darkifyComboboxDropdowns } from "./filter.js";
 
 export default function ClassList() {
 
@@ -7,7 +9,9 @@ export default function ClassList() {
 
     Navbar();
     courseCards();
-
+    courseTabs();
+    darkifyComboboxButtons();
+    darkifyComboboxDropdowns();
 }
 
 function pageBlack() {
