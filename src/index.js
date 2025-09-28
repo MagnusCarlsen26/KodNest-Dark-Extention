@@ -17,6 +17,7 @@ export default function main() {
 
 
     if (path === "/home") Home();
+    // More specific paths should be checked here.
     else if (/^\/practice\/.+/.test(path)) practiceQuestion();
     else console.log("Unknown path: ", path);
 }
