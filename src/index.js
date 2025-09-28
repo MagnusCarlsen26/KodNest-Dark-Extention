@@ -10,7 +10,6 @@ console.log("KodNest Dark Extension: Content script loaded.");
 // TODO: Dark theme for loading components.
 // TODO: How will the errors handled?
 // --may be collect the errors from user via https? 
-// --may be collect the errors from user via https? 
 export default function main() {
 
     const currentURL = window.location.href;
@@ -21,7 +20,7 @@ export default function main() {
     if (path === "/home") Home();
     else if (path === "/class/list") ClassList();
     else if (path === "/practice/list") PracticeList();
-    // More specific paths should be checked here.
+    // TODO: More specific paths should be checked here.
     else if (/^\/practice\/.+/.test(path)) practiceQuestion();
     else console.log("Unknown path: ", path);
 }

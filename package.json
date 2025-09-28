@@ -5,6 +5,7 @@
   "main": "content.js",
   "scripts": {
     "build": "webpack --config webpack.config.js",
+    "update:todos": "node scripts/updateTodos.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
