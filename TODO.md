@@ -35,14 +35,15 @@
       - [ ] [id: c38479a7] Line 15: This function is exactly same as the one in classList.js
 
   - practiceQuestion
-    - footer.js
-      - [ ] [id: 0cd3a1d0] Line 93: This varaible should be different for all different functions.
-
     - practiceQuestion.js
-      - [ ] [id: 2794685b] Line 8: One of the functions is throwing selector not fouund
+      - [ ] [id: 8d31a586] Line 9: One of the functions is throwing selector not fouund
+
+    - taskDescription.js
+      - [ ] [id: 07d99d33] Line 1: Change indentation to 4 spaces in this file.
 
   - index.js
     - [ ] [id: fe1092d8] Line 7: Colors aren't changing when changing pages.
     - [ ] [id: da456715] Line 10: Dark theme for loading components.
     - [ ] [id: 234d7f5d] Line 11: How will the errors handled?
-    - [ ] [id: 884ca93b] Line 23: More specific paths should be checked here.
+    - [ ] [id: c79fdc78] Line 13: Make a components file in src and put all code there. Rename /home/index.js to /home/home.js
+    - [ ] [id: 863cc062] Line 24: More specific paths should be checked here.

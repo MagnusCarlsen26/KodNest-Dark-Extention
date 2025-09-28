@@ -1,13 +1,13 @@
 // Dark theme function is passed as parameter.
 // The Dark theme function should return a boolean.
-export default function MutationObserverCB( fn ) {
+export default function MutationObsCB( fn, args ) {
 
-    console.log("MutationObserverCB", fn.name);
+    console.log("MutationObsCB", fn.name);
 
-    if ( !fn() ) {
+    if ( !fn(args) ) {
         const observer = new MutationObserver((_, obs) => {
 
-            if ( fn() ) obs.disconnect();
+            if ( fn(args) ) obs.disconnect();
 
         });
 

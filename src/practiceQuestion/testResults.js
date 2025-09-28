@@ -1,35 +1,37 @@
 export default function TestResults() {
-    applyStyles();
-    startObserver();
+    
+    return [
+        () => styleContainer(getPanel),
+        () => styleActionButtons(getPanel),
+        () => styleAccordionAndBorders(getPanel),
+        () => styleTextAccents(getPanel),
+        () => styleStatusIndicators(getPanel),
+        () => styleCodeBlocks(getPanel),
+        () => styleSectionLabels(getPanel),
+        () => styleHeaderButtons(getPanel)  ,
+        () => styleScrollContainers(getPanel),
+    ]
 }
 
 function getPanel() {
     return document.querySelector("#test-results");
 }
 
-function applyStyles() {
+function styleContainer(getPanel) {
     const panel = getPanel();
-    if (!panel) return;
+    if (!panel) return false;
 
-    styleContainer(panel);
-    styleActionButtons(panel);
-    styleAccordionAndBorders(panel);
-    styleTextAccents(panel);
-    styleStatusIndicators(panel);
-    styleCodeBlocks(panel);
-    styleSectionLabels(panel);
-    styleHeaderButtons(panel);
-    styleScrollContainers(panel);
-}
-
-function styleContainer(panel) {
     panel.style.setProperty("background-color", "#0a0a0a", "important");
     panel.style.setProperty("color", "#e6e6e6", "important");
     panel.style.setProperty("border-color", "#1f1f1f", "important");
     panel.style.setProperty("box-shadow", "none", "important");
+    return true;
 }
 
-function styleActionButtons(panel) {
+function styleActionButtons(getPanel) {
+    const panel = getPanel();
+    if (!panel) return false;
+
     const runBtn = panel.querySelector("#run-code-btn");
     if (runBtn) {
         runBtn.style.setProperty("background-color", "transparent", "important");
@@ -42,76 +44,106 @@ function styleActionButtons(panel) {
         submitBtn.style.setProperty("color", "#ffffff", "important");
         submitBtn.style.setProperty("border", "0", "important");
     }
+    return runBtn || submitBtn ? true : false;
 }
 
-function styleAccordionAndBorders(panel) {
-    panel.querySelectorAll(".course-task-accordion, [role='region'], .border-b, .border-t, .border-r, .border-l").forEach(el => {
+function styleAccordionAndBorders(getPanel) {
+    const panel = getPanel();
+    if (!panel) return false;
+
+    const elements = panel.querySelectorAll(".course-task-accordion, [role='region'], .border-b, .border-t, .border-r, .border-l");
+    if (elements.length === 0) return false;
+
+    elements.forEach(el => {
         el.style.setProperty("background-color", "transparent", "important");
         el.style.setProperty("color", "#e6e6e6", "important");
         el.style.setProperty("border-color", "#262626", "important");
     });
+    return true;
 }
 
-function styleTextAccents(panel) {
-    panel.querySelectorAll(".text-muted-foreground").forEach(el => {
+function styleTextAccents(getPanel) {
+    const panel = getPanel();
+    if (!panel) return false;
+
+    const accents = panel.querySelectorAll(".text-muted-foreground");
+    if (accents.length === 0) return false;
+
+    accents.forEach(el => {
         el.style.setProperty("color", "#9ca3af", "important");
     });
+    return true;
 }
 
-function styleStatusIndicators(panel) {
-    panel.querySelectorAll(".text-green-600").forEach(el => el.style.setProperty("color", "#22c55e", "important"));
-    panel.querySelectorAll(".text-red-600").forEach(el => el.style.setProperty("color", "#ef4444", "important"));
-    panel.querySelectorAll(".bg-red-100").forEach(el => el.style.setProperty("background-color", "#3b0d0d", "important"));
+function styleStatusIndicators(getPanel) {
+    const panel = getPanel();
+    if (!panel) return false;
+
+    const greens = panel.querySelectorAll(".text-green-600");
+    const reds = panel.querySelectorAll(".text-red-600");
+    const redBgs = panel.querySelectorAll(".bg-red-100");
+
+    if (greens.length === 0 && reds.length === 0 && redBgs.length === 0) return false;
+
+    greens.forEach(el => el.style.setProperty("color", "#22c55e", "important"));
+    reds.forEach(el => el.style.setProperty("color", "#ef4444", "important"));
+    redBgs.forEach(el => el.style.setProperty("background-color", "#3b0d0d", "important"));
+    return true;
 }
 
-function styleCodeBlocks(panel) {
-    panel.querySelectorAll("pre, code, .bg-slate-100").forEach(el => {
+function styleCodeBlocks(getPanel) {
+    const panel = getPanel();
+    if (!panel) return false;
+
+    const codeBlocks = panel.querySelectorAll("pre, code, .bg-slate-100");
+    if (codeBlocks.length === 0) return false;
+
+    codeBlocks.forEach(el => {
         el.style.setProperty("background-color", "#0f172a", "important");
         el.style.setProperty("color", "#e5e7eb", "important");
         el.style.setProperty("border", "1px solid #1e293b", "important");
     });
+    return true;
 }
 
-function styleSectionLabels(panel) {
-    panel.querySelectorAll("p.font-medium, p.font-medium *").forEach(el => {
+function styleSectionLabels(getPanel) {
+    const panel = getPanel();
+    if (!panel) return false;
+
+    const labels = panel.querySelectorAll("p.font-medium, p.font-medium *");
+    if (labels.length === 0) return false;
+
+    labels.forEach(el => {
         el.style.setProperty("color", "#fbbf24", "important");
     });
+    return true;
 }
 
-function styleHeaderButtons(panel) {
-    panel.querySelectorAll("button.transparent-button").forEach(btn => {
+function styleHeaderButtons(getPanel) {
+    const panel = getPanel();
+    if (!panel) return false;
+
+    const buttons = panel.querySelectorAll("button.transparent-button");
+    if (buttons.length === 0) return false;
+
+    buttons.forEach(btn => {
         btn.style.setProperty("background-color", "transparent", "important");
         btn.style.setProperty("color", "#e6e6e6", "important");
         btn.style.setProperty("border", "none", "important");
     });
+    return true;
 }
 
-function styleScrollContainers(panel) {
-    panel.querySelectorAll("#test-case-results, #test-case-container").forEach(scroller => {
+function styleScrollContainers(getPanel) {
+    const panel = getPanel();
+    if (!panel) return false;
+
+    const scrollers = panel.querySelectorAll("#test-case-results, #test-case-container");
+    if (scrollers.length === 0) return false;
+
+    scrollers.forEach(scroller => {
         scroller.style.setProperty("background-color", "transparent", "important");
         scroller.style.setProperty("color", "#e6e6e6", "important");
     });
+    return true;
 }
-
-function startObserver() {
-    if (window.testResultsObserver && typeof window.testResultsObserver.disconnect === "function") {
-        try { window.testResultsObserver.disconnect(); } catch (e) {}
-        window.testResultsObserver = null;
-    }
-
-    const target = getPanel() || document.body;
-    const observer = new MutationObserver(() => {
-        if (observer._raf) cancelAnimationFrame(observer._raf);
-        observer._raf = requestAnimationFrame(() => {
-            applyStyles();
-            if (!window.location.href.includes("/practice/")) {
-                observer.disconnect();
-                window.testResultsObserver = null;
-            }
-        });
-    });
-
-    observer.observe(target, { childList: true, subtree: true });
-    window.testResultsObserver = observer;
-}
-

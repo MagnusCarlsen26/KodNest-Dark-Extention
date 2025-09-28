@@ -1,8 +1,6 @@
-import MutationObserverCB from "../utils/MutationObsCB.js";
-
 export default function CompileLanguage() {
 	
-	const styles = [
+	return [
 		styleRootElement,
 		styleLanguageSelectorButton,
 		styleLanguageSelectorLabel,
@@ -12,8 +10,6 @@ export default function CompileLanguage() {
 		styleActionButtons,
 		styleResetButtonIcon,
 	]
-
-	return styles.forEach(MutationObserverCB)
 
 }
 

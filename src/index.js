@@ -10,6 +10,7 @@ console.log("KodNest Dark Extension: Content script loaded.");
 // TODO: Dark theme for loading components.
 // TODO: How will the errors handled?
 // --may be collect the errors from user via https? 
+// TODO: Make a components file in src and put all code there. Rename /home/index.js to /home/home.js
 export default function main() {
 
     const currentURL = window.location.href;
@@ -22,5 +23,5 @@ export default function main() {
     else if (path === "/practice/list") PracticeList();
     // TODO: More specific paths should be checked here.
     else if (/^\/practice\/.+/.test(path)) practiceQuestion();
-    else console.log("Unknown path: ", path);
+    else console.error("Unknown path: ", path);
 }
