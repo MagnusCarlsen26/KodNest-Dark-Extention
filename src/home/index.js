@@ -8,6 +8,7 @@ import footer from "./footer.js";
 import placementCards from "./placementCards.js";
 import ArrowButtons from "./arrowButtons.js";
 
+// TODO: Not able to figure out footer
 export default function Home() {
     
     const dashboard = document.querySelector("#dashboard-column");
