@@ -10,6 +10,7 @@ console.log("KodNest Dark Extension: Content script loaded.");
 // TODO: Dark theme for loading components.
 // TODO: How will the errors handled?
 // --may be collect the errors from user via https? 
+// --may be collect the errors from user via https? 
 export default function main() {
 
     const currentURL = window.location.href;
