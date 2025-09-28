@@ -1,6 +1,7 @@
 console.log("Hello World from index.js");
 import Home from "./home/index.js";
 import ClassList from "./classList/classList.js";
+import PracticeList from "./practiceList/practiceList.js";
 
 console.log("KodNest Dark Extension: Content script loaded.");
 // TODO: Colors aren't changing when changing pages. 
@@ -16,6 +17,7 @@ export default function main() {
 
 
     if (path === "/home") Home();
-    if (path === "/class/list") ClassList();
+    else if (path === "/class/list") ClassList();
+    else if (path === "/practice/list") PracticeList();
     else console.log("Unknown path: ", path);
 }
