@@ -8,8 +8,6 @@ export default function applyMutationObsToPage(
 
     components.forEach( component => {
 
-        console.log("applyMutationObsToPage", component)
-
         const output = component()
 
         if ( typeof output === "boolean" ) {
@@ -17,7 +15,7 @@ export default function applyMutationObsToPage(
         } 
 
         else if ( typeof output === "object" ) output.forEach( MutationObsCB )
-        else throw new Error( `applyMutationObsToPage: Invalid output type: ${typeof output}` )
+        else throw new Error( `applyMutationObsToPage: Invalid output type: ${typeof output} from ${component.name}` )
 
     })
 
