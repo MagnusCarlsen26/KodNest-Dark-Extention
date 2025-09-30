@@ -1,40 +1,31 @@
 import Navbar from "../navbar/navbar";
 import practiceCards from "../home/practiceCards";
 import practiceTitles from "./practiceTitles";
-
+import applyMutationObsToPage from "../utils/applyMutationObsToPage";
 // TODO: Loading dark theme pending
 // TODO: Filter dark theme pending
 export default function practiceList() {
 
-    pageBlack();
-    practiceTitles();
     Navbar();
-    practiceCards();
+
+    [
+        pageBlack,
+        practiceTitles,
+        practiceCards,
+    ].forEach(applyMutationObsToPage)
+
 }
 
-// TODO: This function is exactly same as the one in classList.js
 function pageBlack() {
 
-    const applyGlobalDisableSelectStyle = () => {
-        const el = document.querySelector(
-            "#global-disable-select > div.layout-wrapper.MuiBox-root.css-33gw4 > div > div > div.pt-\\[2px\\].overflow-y-auto.h-full > div"
-        );
+    const el = document.querySelector(
+        "#global-disable-select > div.layout-wrapper.MuiBox-root.css-33gw4 > div > div > div.pt-\\[2px\\].overflow-y-auto.h-full > div"
+    );
 
-        if (el) {
-            el.style.setProperty("background-color", "#000000", "important");
-            console.log("Applied background color to global disable select");
-            return true;
-        }
-        console.log("Global disable select not found");
-        return false;
-    };
+    if (!el) return false;
 
-    if (!applyGlobalDisableSelectStyle()) {
-        const observer = new MutationObserver((mutations, obs) => {
-            if (applyGlobalDisableSelectStyle()) {
-                obs.disconnect();
-            }
-        });
-        observer.observe(document.body, { childList: true, subtree: true });
-    }
+    el.style.setProperty("background-color", "#000000", "important");
+
+    return true;
+
 }

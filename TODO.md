@@ -35,7 +35,6 @@
     - practiceList.js
       - [ ] [id: bbf64a55] Line 5: Loading dark theme pending
       - [ ] [id: fdd6f8cb] Line 6: Filter dark theme pending
-      - [ ] [id: c38479a7] Line 15: This function is exactly same as the one in classList.js
 
   - practiceQuestion
     - practiceQuestion.js
