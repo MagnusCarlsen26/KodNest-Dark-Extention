@@ -31,21 +31,17 @@ export default function mentorConnectButton() {
 
     // Immediate inline effect (so you don't wait for style injection)
     const mentor = document.querySelector("#mentor-connect");
-    if (mentor) {
+    if (!mentor) return false;
+
     mentor.style.setProperty("border", "1px solid #fff", "important");
     mentor.style.setProperty("border-radius", "6px", "important");
     mentor.style.setProperty("padding", "4px 8px", "important");
-    }
+    
+    mentor.querySelector("span").style.setProperty("color", "#fff", "important");
+    mentor.querySelector("svg").style.setProperty("stroke", "#fff", "important");
+    mentor.querySelector("svg path").style.setProperty("fill", "#000", "important");
+    mentor.querySelector("svg path").style.setProperty("stroke", "#fff", "important");
 
-    document.querySelector("#mentor-connect span")
-    ?.style.setProperty("color", "#fff", "important");
-
-    document.querySelector("#mentor-connect svg")
-    ?.style.setProperty("stroke", "#fff", "important");
-
-    document.querySelector("#mentor-connect svg path")
-    ?.style.setProperty("fill", "#000", "important");
-    document.querySelector("#mentor-connect svg path")
-    ?.style.setProperty("stroke", "#fff", "important");
+    return true;
 
 }

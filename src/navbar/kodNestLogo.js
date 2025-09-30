@@ -1,7 +1,8 @@
 export default function kodNestLogo() {
-const logoImg = document.querySelector("#header-logo");
+    
+    const logoImg = document.querySelector("#header-logo");
+    if (!logoImg) return false;
 
-    if (logoImg) {
     const logoWrapper = document.createElement("div");
     logoWrapper.id = "header-logo";
     logoWrapper.innerHTML = `
@@ -63,5 +64,7 @@ const logoImg = document.querySelector("#header-logo");
         }
     `;
     document.head.appendChild(style);
-    }
+
+    return true;
+
 }

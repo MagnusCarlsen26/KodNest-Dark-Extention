@@ -29,7 +29,7 @@
 
   - navbar
     - navbar.js
-      - [ ] [id: d2dc203e] Line 37: Dark theme the bottom border
+      - [ ] [id: f80ffb5f] Line 13: Dark theme the bottom border
 
   - practiceList
     - practiceList.js
