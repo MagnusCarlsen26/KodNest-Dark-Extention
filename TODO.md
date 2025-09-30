@@ -12,37 +12,40 @@
     - courseCards.js
       - [ ] [id: 7cad6c71] Line 1: Change color of status according to the status.
       - [ ] [id: 897032b2] Line 4: Add border color in the circle.
-      - [ ] [id: cf96796b] Line 7: java course says 'not started'. so its color should be red.
+      - [ ] [id: c4db4ddd] Line 14: java course says 'not started'. so its color should be red.
 
     - footer.js
       - [ ] [id: d764629e] Line 1: Some white padding is there in bottom of the page
 
     - index.js
       - [ ] [id: 791df826] Line 11: Not able to figure out footer
-      - [ ] [id: a7e2d953] Line 27: The below button doesnt make any change.
+      - [ ] [id: 90ddce31] Line 12: Skipping ArrowButtons for now. Will do it later
+      - [ ] [id: 62acf0b7] Line 13: Community button got camouflaged.
+      - [ ] [id: afd40d53] Line 14: Styles are being injected in /home and some places in /practiceList. This is not the standard way to do. .style.setProperty() should be used everywhere in this project.
+      - [ ] [id: 36864373] Line 15: Add style for self paced cards.
 
-    - placementCards.js
-      - [ ] [id: 87ffbd22] Line 1: Sometimes the text is blue not red.
+    - practiceCards.js
+      - [ ] [id: 80387e68] Line 5: Styling for Left arrow in continue button.
 
   - navbar
     - navbar.js
-      - [ ] [id: d2dc203e] Line 37: Dark theme the bottom border
+      - [ ] [id: f80ffb5f] Line 13: Dark theme the bottom border
 
   - practiceList
     - practiceList.js
       - [ ] [id: bbf64a55] Line 5: Loading dark theme pending
       - [ ] [id: fdd6f8cb] Line 6: Filter dark theme pending
-      - [ ] [id: c38479a7] Line 15: This function is exactly same as the one in classList.js
 
   - practiceQuestion
-    - footer.js
-      - [ ] [id: 0cd3a1d0] Line 93: This varaible should be different for all different functions.
-
     - practiceQuestion.js
-      - [ ] [id: 2794685b] Line 8: One of the functions is throwing selector not fouund
+      - [ ] [id: 8d31a586] Line 9: One of the functions is throwing selector not fouund
+
+    - taskDescription.js
+      - [ ] [id: 07d99d33] Line 1: Change indentation to 4 spaces in this file.
 
   - index.js
     - [ ] [id: fe1092d8] Line 7: Colors aren't changing when changing pages.
     - [ ] [id: da456715] Line 10: Dark theme for loading components.
     - [ ] [id: 234d7f5d] Line 11: How will the errors handled?
-    - [ ] [id: 884ca93b] Line 23: More specific paths should be checked here.
+    - [ ] [id: c79fdc78] Line 13: Make a components file in src and put all code there. Rename /home/index.js to /home/home.js
+    - [ ] [id: 863cc062] Line 24: More specific paths should be checked here.

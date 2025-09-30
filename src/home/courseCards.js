@@ -4,7 +4,15 @@
 // TODO: Add border color in the circle.
 export default function courseCards() {
 
-    // TODO: java course says 'not started'. so its color should be red.
+    injectStyles();
+
+    return [
+        styleCourseCards
+    ];
+}
+
+// TODO: java course says 'not started'. so its color should be red.
+function injectStyles() {
     const style = document.createElement("style");
     style.textContent = `
     /* === Course Cards Dark Theme === */
@@ -72,5 +80,9 @@ export default function courseCards() {
     }
     `;
     document.head.appendChild(style);
+}
 
+function styleCourseCards() {
+    const cards = document.querySelectorAll('[id^="live-course-card-"] .dashboard-card');
+    return cards.length > 0;
 }

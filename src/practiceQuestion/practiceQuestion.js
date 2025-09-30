@@ -4,15 +4,18 @@ import taskDescription from "./taskDescription.js";
 import Footer from "./footer.js";
 import CompileLanguage from "./CompileLanguage.js";
 import TestResults from "./testResults.js";
+import applyMutationObsToPage from "../utils/applyMutationObsToPage.js";
 
 // TODO: One of the functions is throwing selector not fouund
 // error. Probably in taskDescription() 
 export default function practiceQuestion() {
 
-    Navbar();
-    taskHeader();
-    taskDescription();
-    CompileLanguage();
-    TestResults();
-    Footer();
+    [
+        Navbar, 
+        taskHeader,
+        taskDescription,
+        CompileLanguage,
+        TestResults,
+        Footer,
+    ].forEach(applyMutationObsToPage)
 }
