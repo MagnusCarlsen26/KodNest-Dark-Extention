@@ -24,9 +24,6 @@
       - [ ] [id: afd40d53] Line 14: Styles are being injected in /home and some places in /practiceList. This is not the standard way to do. .style.setProperty() should be used everywhere in this project.
       - [ ] [id: 36864373] Line 15: Add style for self paced cards.
 
-    - placementCards.js
-      - [ ] [id: 87ffbd22] Line 1: Sometimes the text is blue not red.
-
     - practiceCards.js
       - [ ] [id: 80387e68] Line 5: Styling for Left arrow in continue button.
 
