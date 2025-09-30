@@ -1,104 +1,210 @@
-// TODO: Sometimes the text is blue not red.
+// Dark theme for Placement profile cards
 export default function placementCards() {
-  const STYLE_ID = "__darkify_placed_profile_card";
+  return [stylePlacementCardsDark];
+}
 
-  if (!document.getElementById(STYLE_ID)) {
-    const css = `
-      .dashboard-card[data-placed-dark="1"]{
-        --accent:#60a5fa;           /* link/cta blue */
-        --muted:#a1a1aa;            /* secondary text */
-        --surface:#121212;          /* card */
-        --surface-2:#1b1b1b;        /* inner blocks */
-        --divider:#2a2a2a;
-        background:var(--surface)!important;
-        color:#e5e5e5!important;
-        border-color:var(--divider)!important;
-      }
-      .dashboard-card[data-placed-dark="1"] *{ color:#e5e5e5!important; }
+function stylePlacementCardsDark() {
+  console.log("Applying dark theme to Placement cards...");
 
-      /* kill light surfaces, pastels, gradients */
-      .dashboard-card[data-placed-dark="1"] .bg-white,
-      .dashboard-card[data-placed-dark="1"] [style*="background-color: rgb(252, 231, 243)"],
-      .dashboard-card[data-placed-dark="1"] [class*="bg-gradient-to-"],
-      .dashboard-card[data-placed-dark="1"] .p-\\[10px\\] .relative{ background:var(--surface-2)!important; background-image:none!important; }
+  // Heuristic: placement cards have an avatar with id or "Placed in" / "Salary Package" copy
+  const cards = [...document.querySelectorAll(".dashboard-card")].filter(card =>
+    card.querySelector("#placement-avatar") ||
+    /placed in|salary package|drive link/i.test(card.textContent)
+  );
 
-      /* avatar ring + dividers */
-      .dashboard-card[data-placed-dark="1"] #placement-avatar{ border-color:var(--divider)!important; }
-      .dashboard-card[data-placed-dark="1"] .bg-gray-200{ background:var(--divider)!important; }
+  if (cards.length === 0) return false;
 
-      /* muted chips/dots text */
-      .dashboard-card[data-placed-dark="1"] .text-muted,
-      .dashboard-card[data-placed-dark="1"] .text-gray-600,
-      .dashboard-card[data-placed-dark="1"] .text-gray-500{ color:var(--muted)!important; }
-      .dashboard-card[data-placed-dark="1"] .bg-gray-300{ background:#3a3a3a!important; }
+  cards.forEach(card => {
+    // Apply styling to different sections
+    styleCardBase(card);
+    styleBanner(card);
+    styleAvatar(card);
+    styleName(card);
+    styleMetaRow(card);
+    styleDividers(card);
+    styleStatsRow(card);
+    cleanupBackgrounds(card);
+  });
 
-      /* strong blacks to readable light */
-      .dashboard-card[data-placed-dark="1"] .text-black{ color:#fafafa!important; }
+  return true;
+}
 
-      /* link/cta accent (Drive Link "Click") */
-      .dashboard-card[data-placed-dark="1"] .text-blue-600{ color:var(--accent)!important; }
-      .dashboard-card[data-placed-dark="1"] .text-blue-600:hover{ filter:brightness(1.1)!important; }
+// --- Base card ---
+function styleCardBase(card) {
+  setStyles(card, {
+    backgroundColor: "#0b0b0b",
+    color: "#e6e6e6",
+    border: "1px solid #1a1a1a",
+    boxShadow: "none",
+  });
 
-      /* images stay bright; optional slight lift on company logo */
-      .dashboard-card[data-placed-dark="1"] img{ filter: none !important; }
-      .dashboard-card[data-placed-dark="1"] [alt="..."]{ filter:brightness(1.05)!important; }
+  // Hover effect (subtle)
+  card.addEventListener("mouseenter", () => {
+    card.style.setProperty("box-shadow", "0 6px 20px rgba(0,0,0,0.35)", "important");
+  });
+  card.addEventListener("mouseleave", () => {
+    card.style.setProperty("box-shadow", "none", "important");
+  });
+}
 
-      /* canvas overlays should not tint */
-      .dashboard-card[data-placed-dark="1"] canvas{ mix-blend-mode: normal!important; }
-
-      /* hover shadow subtle on dark */
-      .dashboard-card[data-placed-dark="1"]:hover{ box-shadow:0 8px 22px rgba(0,0,0,.4)!important; }
-    `.trim();
-    const style = document.createElement("style");
-    style.id = STYLE_ID;
-    style.textContent = css;
-    document.head.appendChild(style);
-  }
-
-  function darkify(card){
-    if (!card || card.dataset.placedDark === "1") return;
-    card.dataset.placedDark = "1";
-
-    // Inline fixes for any lingering light backgrounds
-    card.querySelectorAll("*").forEach(el=>{
-      const bg = getComputedStyle(el).backgroundColor;
-      if (
-        bg === "rgb(255, 255, 255)" ||          // white
-        bg === "rgb(252, 231, 243)" ||          // pink pastel header
-        bg === "rgb(243, 244, 246)" ||          // gray-100/200 variants
-        bg === "rgb(229, 231, 235)"
-      ){
-        el.style.setProperty("background-color","var(--surface-2)","important");
-      }
-      // kill inline black text colors
-      if (getComputedStyle(el).color === "rgb(0, 0, 0)"){
-        el.style.setProperty("color","#e5e5e5","important");
-      }
+// --- Banner / hero area (was pink) ---
+function styleBanner(card) {
+  // Prefer an element with inline background-color OR the first .relative inside the padded block
+  const banner =
+    card.querySelector("div[style*='background-color']") ||
+    card.querySelector(".relative");
+  if (banner) {
+    setStyles(banner, {
+      backgroundColor: "#0b0b0b",
+      color: "#e6e6e6",
+      border: "1px solid #1a1a1a",
+      boxShadow: "none",
     });
   }
+}
 
-  // Initial pass
-  document.querySelectorAll(".dashboard-card").forEach(darkify);
+// --- Avatar ring ---
+function styleAvatar(card) {
+  const avatar = card.querySelector("#placement-avatar");
+  if (avatar) setStyles(avatar, { backgroundColor: "#0b0b0b", color: "#e6e6e6", border: "1px solid #1a1a1a", boxShadow: "none" });
+}
 
-  // Watch for API/SPA insertions
-  const mo = new MutationObserver(muts=>{
-    for (const m of muts){
-      if (m.type === "childList"){
-        m.addedNodes.forEach(n=>{
-          if (!(n instanceof HTMLElement)) return;
-          if (n.matches?.(".dashboard-card")) darkify(n);
-          n.querySelectorAll?.(".dashboard-card").forEach(darkify);
-        });
-      } else if (m.type === "attributes" && m.target instanceof HTMLElement){
-        if (m.target.matches(".dashboard-card")) darkify(m.target);
+// --- Name (the element right after #avatar-container) ---
+function styleName(card) {
+  const name = card.querySelector("#avatar-container + div.text-center");
+  if (name) {
+    setStyles(name, { color: "#f9fafb", fontWeight: "600" });
+  }
+}
+
+// --- Meta row: role, batch, LinkedIn (flex gap-4 justify-center) ---
+function styleMetaRow(card) {
+
+  const meta = card.querySelector(".flex.gap-4.justify-center");
+  if (meta) {
+    setStyles(meta, { color: "#cbd5e1" });
+    // light gray dots
+    meta.querySelectorAll("span.bg-gray-300").forEach(dot =>
+      setStyles(dot, { backgroundColor: "#475569" })
+    );
+    // text inside buttons/links
+    meta.querySelectorAll("button, a").forEach(el =>
+      setStyles(el, { color: "#cbd5e1" })
+    );
+  }
+}
+
+// --- Divider lines (bg-gray-200) ---
+function styleDividers(card) {
+  card.querySelectorAll(".bg-gray-200").forEach(divider =>
+    setStyles(divider, { backgroundColor: "#333333" })
+  );
+}
+
+// --- Stats row: three columns (Placed in | Salary | Drive Link) ---
+function styleStatsRow(card) {
+  // Find the row by having both items-center & justify-between
+  const statsRow = [...card.querySelectorAll("div")]
+    .find(el => hasClass(el, "items-center") && hasClass(el, "justify-between"));
+  if (statsRow) {
+    const cols = statsRow.querySelectorAll(".flex.flex-col");
+    // Col 0: Placed in
+    const placedCol = cols[0];
+    if (placedCol) {
+      const label = placedCol.querySelector("p");
+      if (label) setStyles(label, { color: "#a1a1aa" }); // muted
+    }
+    // Col 1: Salary
+    const salaryCol = cols[1];
+    if (salaryCol) {
+      const label = salaryCol.querySelector("p");
+      const value = salaryCol.querySelector("p.font-medium");
+      if (label) setStyles(label, { color: "#a1a1aa" });
+      if (value) setStyles(value, { color: "#f9fafb" });
+    }
+    // Col 2: Drive Link
+    const driveCol = cols[2];
+    if (driveCol) {
+      const label = driveCol.querySelector("p");
+      if (label) setStyles(label, { color: "#a1a1aa" });
+      const ctaBtn = driveCol.querySelector("button.flex.gap-2");
+      if (ctaBtn) {
+        setStyles(ctaBtn, { color: "#3b82f6" }); // blue accent
+        const icon = ctaBtn.querySelector("svg");
+        if (icon) {
+          setStyles(icon, { color: "#3b82f6", stroke: "#3b82f6" });
+        }
+        // fun hover nudge
+        ctaBtn.addEventListener("mouseenter", () => ctaBtn.style.setProperty("transform", "scale(1.05)", "important"));
+        ctaBtn.addEventListener("mouseleave", () => ctaBtn.style.setProperty("transform", "scale(1.00)", "important"));
       }
     }
-  });
-  mo.observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:["class","style"]});
-
-  // Cleanup handle if needed
-  window.__darkPlacedStop?.();
-  window.__darkPlacedStop = () => mo.disconnect();
-
-  console.log("Darkify: placed profile cards are now dark-themed with readable accents.");
+  }
 }
+
+// --- Neutralize any eftover light backgrounds (keep images as-is) ---
+function cleanupBackgrounds(card) {
+  card.querySelectorAll("[class*='bg-white'], [class*='bg-gray-50'], [class*='bg-slate-50']")
+    .forEach(el => {
+      // don't touch the <img> or <canvas>
+      if (el.tagName === "IMG" || el.tagName === "CANVAS") return;
+      setStyles(el, { backgroundColor: "transparent" });
+      el.style.removeProperty("background-image");
+    });
+}
+
+/* ---------------- helpers ---------------- */
+function setStyles(el, styles) {
+  Object.entries(styles).forEach(([prop, val]) =>
+    el.style.setProperty(cssProp(prop), val, "important")
+  );
+}
+function cssProp(jsProp) {
+  // camelCase -> kebab-case
+  return jsProp.replace(/[A-Z]/g, m => "-" + m.toLowerCase());
+}
+function hasClass(el, cls) {
+  return (el?.className || "").split(/\s+/).includes(cls);
+}
+
+/* ---------------- Constants ---------------- */
+// const PLACEMENT_COLORS = {
+//   card: {
+//     backgroundColor: "#0b0b0b",
+//     color: "#e6e6e6",
+//     border: "1px solid #1a1a1a",
+//     boxShadow: "none",
+//   },
+//   banner: {
+//     PLACEMENT_COLORS.banner,
+//   },
+//   avatar: {
+//     PLACEMENT_COLORS.avatar,
+//   },
+//   name: {
+//     color: "#f9fafb",
+//     fontWeight: "600",
+//   },
+//   meta: {
+//     color: "#cbd5e1",
+//   },
+//   dots: {
+//     backgroundColor: "#475569",
+//   },
+//   dividers: {
+//     backgroundColor: "#333333",
+//   },
+//   labels: {
+//     color: "#a1a1aa",
+//   },
+//   values: {
+//     color: "#f9fafb",
+//   },
+//   cta: {
+//     color: "#3b82f6",
+//   },
+//   icons: {
+//     color: "#3b82f6",
+//     stroke: "#3b82f6",
+//   },
+// };
