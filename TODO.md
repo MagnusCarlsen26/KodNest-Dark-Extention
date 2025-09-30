@@ -12,17 +12,23 @@
     - courseCards.js
       - [ ] [id: 7cad6c71] Line 1: Change color of status according to the status.
       - [ ] [id: 897032b2] Line 4: Add border color in the circle.
-      - [ ] [id: cf96796b] Line 7: java course says 'not started'. so its color should be red.
+      - [ ] [id: c4db4ddd] Line 14: java course says 'not started'. so its color should be red.
 
     - footer.js
       - [ ] [id: d764629e] Line 1: Some white padding is there in bottom of the page
 
     - index.js
       - [ ] [id: 791df826] Line 11: Not able to figure out footer
-      - [ ] [id: a7e2d953] Line 27: The below button doesnt make any change.
+      - [ ] [id: 90ddce31] Line 12: Skipping ArrowButtons for now. Will do it later
+      - [ ] [id: 62acf0b7] Line 13: Community button got camouflaged.
+      - [ ] [id: afd40d53] Line 14: Styles are being injected in /home and some places in /practiceList. This is not the standard way to do. .style.setProperty() should be used everywhere in this project.
+      - [ ] [id: 36864373] Line 15: Add style for self paced cards.
 
     - placementCards.js
       - [ ] [id: 87ffbd22] Line 1: Sometimes the text is blue not red.
+
+    - practiceCards.js
+      - [ ] [id: 80387e68] Line 5: Styling for Left arrow in continue button.
 
   - navbar
     - navbar.js
